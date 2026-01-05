@@ -1,14 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const reportController = require("../controllers/reportController");
+const reviewController = require("../controllers/reviewController");
 
-router.get("/", reportController.getAllReports);
-router.post("/", reportController.createReport);
-router.get("/:id", reportController.getReportById);
+// new review
+router.post("/", reviewController.createReview);
 
-// Admin-like handling 
-router.patch("/:id/assign", reportController.assignReport);
-router.patch("/:id/resolve", reportController.resolveReport);
-router.patch("/:id/reject", reportController.rejectReport);
+// GET reviews for a specific cook
+router.get("/:cookName", reviewController.getReviewsByCook);
+
+// UPDATE a review
+router.put("/:id", reviewController.updateReview);
+
+// DELETE
+router.delete("/:id", reviewController.deleteReview);
+
 
 module.exports = router;
