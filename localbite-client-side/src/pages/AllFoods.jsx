@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Clock, MapPin, User, X } from "lucide-react";
+import { useNavigate } from "react-router";
+
 
 // Mock data - will be replaced with API data later
 const mockFoodItems = [
@@ -111,6 +113,8 @@ const mockFoodItems = [
 
 const AllFoods = () => {
   const [selectedFood, setSelectedFood] = useState(null);
+  const navigate = useNavigate();
+
 
   const handleCardClick = (food) => {
     setSelectedFood(food);
@@ -191,10 +195,19 @@ const AllFoods = () => {
                 </div>
 
                 {/* Cook Info */}
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <div
+                  className="flex items-center gap-2 text-xs text-muted-foreground cursor-pointer hover:text-primary"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/cook/${encodeURIComponent(food.cookName)}`);
+                  }}
+                >
                   <User className="h-3.5 w-3.5" />
-                  <span className="line-clamp-1">{food.cookName}</span>
+                  <span className="underline line-clamp-1">
+                    {food.cookName}
+                  </span>
                 </div>
+
 
                 {/* Order Button */}
                 <button
