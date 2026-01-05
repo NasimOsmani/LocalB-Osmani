@@ -15,9 +15,8 @@ import Orders from "../dashboard/DashboardComponents/Orders";
 import MyOrders from "../dashboard/DashboardComponents/MyOrders";
 import Insights from "../dashboard/DashboardComponents/Insights";
 import CooksReview from "../dashboard/DashboardComponents/CooksReview";
-import Verify from "../dashboard/DashboardComponents/Verify";
-import VerifyRequest from "../dashboard/DashboardComponents/VerifyRequest";
-import AllUsers from "../dashboard/DashboardComponents/AllUsers";
+
+
 
 export const routes = createBrowserRouter([
   {
@@ -61,10 +60,6 @@ export const routes = createBrowserRouter([
         Component: MyDishes,
       },
       {
-        path: "/dashboard/users",
-        Component: AllUsers,
-      },
-      {
         path: "/dashboard/add-dish",
         Component: AddDish,
       },
@@ -87,14 +82,6 @@ export const routes = createBrowserRouter([
       {
         path: "/dashboard/cooksreview",
         Component: CooksReview,
-      },
-      {
-        path: "/dashboard/verify",
-        Component: Verify,
-      },
-      {
-        path: "/dashboard/verify-request",
-        Component: VerifyRequest,
       },
     ],
   },

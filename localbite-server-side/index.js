@@ -7,7 +7,6 @@ const userRoutes = require("./routes/userRoutes");
 const mealRoutes = require("./routes/mealRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const statsRoutes = require("./routes/statsRoutes");
-const verificationRoutes = require("./routes/verificationRoutes");
 
 const app = express();
 const port = process.env.PORT || 5000; 
@@ -22,11 +21,6 @@ app.use("/meals", mealRoutes);
 app.use("/orders", orderRoutes);
 app.use("/api/stats", statsRoutes);
 
-app.use("/api/verify", verificationRoutes);
-
-app.get("/", (req, res) => {
-  res.send("Get Ready To Share a Bite!");
-});
     const reviews = await Review.find({ 
       cookName: { $regex: new RegExp(`^${cookName}$`, "i") } 
     }).sort({ createdAt: -1 });

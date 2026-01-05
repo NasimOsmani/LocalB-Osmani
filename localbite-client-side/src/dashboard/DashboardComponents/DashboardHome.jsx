@@ -11,7 +11,6 @@ import {
   TrendingUp,
   Activity,
 } from "lucide-react";
-import AdminDashboard from "./AdminDashboard";
 
 const StatsCard = ({ title, value, icon: Icon, color = "bg-primary" }) => (
   <div className="bg-card border border-border rounded-xl p-6 flex items-center gap-4 shadow-sm">
@@ -37,17 +36,8 @@ const DashboardHome = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!user?.uid || !role) return;
-
-    // Foodie dashboard
-    if (role === "foodie") {
-      setLoading(false);
-      return;
-    }
-
-    // Admin dashboard
-    if (role === "admin") {
-      setLoading(false);
+    if (!user?.uid || role !== "cook") {
+      if (role === "foodie") setLoading(false);
       return;
     }
 
@@ -69,17 +59,11 @@ const DashboardHome = () => {
         setLoading(false);
       }
     };
-    // Cook dashboard → fetch stats
-    if (role === "cook") {
-      fetchStats();
-    }
+
+    fetchStats();
   }, [user, role]);
 
   if (loading) return <Loading />;
-
-  if (role === "admin") {
-    return <AdminDashboard />;
-  }
 
   if (role === "foodie") {
     // Simple welcome for now
@@ -92,7 +76,9 @@ const DashboardHome = () => {
           Ready to discover your next delicious meal?
         </p>
         <div className="bg-primary/5 border border-primary/20 rounded-xl p-6">
-          <h3 className="text-xl font-bold text-primary mb-2">Hungry?</h3>
+          <h3 className="text-xl font-bold text-primary mb-2">
+            Hungry?
+          </h3>
           <p className="text-neutral/80 mb-4">
             Explore local kitchens around you and support home cooks.
           </p>
@@ -129,8 +115,7 @@ const DashboardHome = () => {
             Ready to cook up a storm?
           </h3>
           <p className="text-neutral/80 mb-4">
-            Add your latest culinary creation and share it with food lovers
-            nearby.
+            Add your latest culinary creation and share it with food lovers nearby.
           </p>
           <a
             href="/dashboard/add-dish"
