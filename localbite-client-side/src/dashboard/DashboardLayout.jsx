@@ -256,13 +256,24 @@ const DashboardLayout = () => {
             </NavLink>
 
             {role === "admin" && (
-              <NavLink
-                to="/dashboard/users"
-                className={linkClasses}
-                onClick={closeSidebar}
-              >
-                <Users /> All Users
-              </NavLink>
+              <>
+                <NavLink
+                  to="/dashboard/users"
+                  className={linkClasses}
+                  onClick={closeSidebar}
+                >
+                  <Users /> All Users
+                </NavLink>
+                <NavLink
+                  to="/dashboard/verify-request"
+                  className={linkClasses}
+                  onClick={closeSidebar}
+                >
+                  <ShieldCheck /> Verify Request
+                </NavLink>
+              </>
+
+              
             )}
 
             <NavLink
